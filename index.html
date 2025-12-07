@@ -4,126 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free PDF Merger</title>
+    <title>Kawai - Personal Assistant Chatbot</title>
     <link rel="stylesheet" href="css/index.css">
-    <link rel="icon" href="image/PDF.ico" type="image/x-icon"/>
-    <link rel="stylesheet" 
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="image/PDF.ico" type="image/x-icon" /> <!-- TODO: Update Favicon later -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body class="bg-gray-100">
     <!-- Navbar -->
     <header class="header">
         <div class="logo">
-            <a href="https://pdfmulbi.github.io/" class="logo-text">
-                PDF <span class="heart">❤</span>Merger
+            <a href="index.html" class="logo-text">
+                Kawai <span class="heart">❤</span> Assistant
             </a>
         </div>
-    
+
         <div class="auth-buttons" id="auth-buttons">
-            <a href="https://pdfmulbi.github.io/login" class="login">Login</a>
+            <a href="login.html" class="login">Login</a>
             <button class="signup" onclick="klikSignup()">Sign up</button>
         </div>
-    
-        <!-- Tombol dashboard admin (hanya muncul jika admin) -->
+
+        <!-- Tombol dashboard (muncul jika login) -->
         <div id="dashboard-button" style="display: none;">
-            <a href="https://pdfmulbi.github.io/dashboard" class="dashboard">Dashboard</a>
+            <a href="dashboard.html" class="dashboard">Dashboard</a>
         </div>
-    </header>    
+    </header>
 
     <!-- Main Content -->
     <main class="main-content">
-        <h1 class="welcome-text">Welcome to PDF Merger</h1>
-        <h2>Simplify Your PDF Tasks</h2>
-        <p>Combine, organize, and manage your PDF files with ease.<br>
-            <strong>Fast, secure, and always FREE!</strong>
+        <h1 class="welcome-text">Your Personal Assistant on WhatsApp</h1>
+        <h2>Smart, Fast, and Always Available</h2>
+        <p>Kawai helps you manage notes, links, and more directly from WhatsApp.<br>
+            <strong>Experience the power of a personal assistant in your pocket.</strong>
         </p>
-        
-        <!-- ini list fitur -->
-        <div class="list-wrapper">
 
-    <div class="feature-row">
-        <div class="image-container">
-            <img src="image/iconmerge.png" alt="Merge PDF" class="illustration">
+        <div class="hero-actions" style="margin-top: 30px;">
+            <a href="https://wa.me/6281234567890" target="_blank" class="cta-button"
+                style="text-decoration: none; font-size: 1.2rem; padding: 15px 30px;">
+                <i class="fab fa-whatsapp"></i> Chat via WhatsApp
+            </a>
         </div>
 
-        <div class="description-container">
-            <h3>Merge PDF</h3>
-            <p>Mengabungkan banyak file PDF menjadi satu file</p>
-        </div>
-
-        <button class="cta-button" onclick="window.location.href='merge.html'">
-            Start Merging
-        </button>
-    </div>
-
-    <div class="feature-row">
-        <div class="image-container">
-            <img src="image/iconmerge.png" alt="Compress PDF" class="illustration">
-        </div>
-
-        <div class="description-container">
-            <h3>Resize PDF</h3>
-            <p>Mengeecilkan / Memperbesar ukuran file PDF</p>
-        </div>
-
-        <button class="cta-button" onclick="window.location.href='compress.html'">
-            Start Resizing
-        </button>
-    </div>
-
-    <div class="feature-row">
-        <div class="image-container">
-            <img src="image/iconmerge.png" alt="Compress PDF" class="illustration">
-        </div>
-
-        <div class="description-container">
-            <h3>Convert PDF</h3>
-            <p>Mengubah  document file PDF</p>
-        </div>
-
-        <button class="cta-button" onclick="window.location.href='convert.html'">
-            Start Convertting
-        </button>
-    </div>
-
-    <div class="feature-row">
-        <div class="image-container">
-            <img src="image/iconmerge.png" alt="Compress PDF" class="illustration">
-        </div>
-
-        <div class="description-container">
-            <h3>Summary PDF</h3>
-            <p>Menyimpulkan isi file PDF</p>
-        </div>
-
-        <button class="cta-button" onclick="window.location.href='summary.html'">
-            Start Summaring
-        </button>
-    </div>
-
-        </div>
-        
     </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-item">
-                <a href="https://pdfmulbi.github.io/">
+                <a href="index.html">
                     <i class="fas fa-home"></i>
                     <span>Home</span>
                 </a>
             </div>
+            <!-- Removed Support Us for now or keep if needed -->
             <div class="footer-item">
-                <a href="supportus.html">
-                    <i class="fa-solid fa-hand-holding-dollar"></i>
-                    <span>Support Us</span>
-                </a>
-            </div>
-            <div class="footer-item upload">
-                <a href="merge.html">
-                    <i class="fa-solid fa-file-arrow-up"></i>
+                <a href="dashboard.html">
+                    <i class="fas fa-columns"></i>
+                    <span>Dashboard</span>
                 </a>
             </div>
             <div class="footer-item">
@@ -133,11 +70,11 @@
                 </a>
             </div>
             <div class="footer-item">
-                <a href="javascript:void(0)" id="logout-link">
+                <a href="javascript:void(0)" id="logout-link" style="display: none;">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Logout</span>
                 </a>
-            </div>            
+            </div>
         </div>
     </footer>
 
@@ -146,7 +83,7 @@
 
     <script>
         function klikSignup() {
-            window.location.href = 'https://pdfmulbi.github.io/register'
+            window.location.href = 'register.html'
         }
     </script>
 </body>

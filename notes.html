@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Notes - Kawai Assistant</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body class="bg-gray-100">
+    <header class="header">
+        <div class="logo">
+            <a href="dashboard.html" class="logo-text">Kawai <span>❤</span> Assistant</a>
+        </div>
+        <div class="auth-buttons">
+            <a href="dashboard.html" class="dashboard">Back to Dashboard</a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <h1>My Notes</h1>
+
+        <!-- Add Note Section -->
+        <div class="feature-row"
+            style="flex-direction: column; align-items: flex-start; background: white; padding: 20px; border-radius: 10px;">
+            <h3>Create New Note</h3>
+            <div id="add-note-form" style="width: 100%; display: flex; gap: 10px; margin-top: 10px;">
+                <input type="text" id="note-title" placeholder="Title" class="input" style="flex: 1; padding: 10px;">
+                <input type="text" id="note-content" placeholder="Content" class="input"
+                    style="flex: 2; padding: 10px;">
+                <button class="cta-button" id="save-note-btn" style="padding: 10px 20px;">Save</button>
+            </div>
+        </div>
+
+        <!-- Notes List -->
+        <div id="notes-list" style="margin-top: 30px; display: grid; gap: 15px;">
+            <!-- Notes will be loaded here -->
+            <p>Loading notes...</p>
+        </div>
+    </main>
+
+    <script type="module">
+        import { checkAuth } from './js/auth-guard.js';
+        checkAuth();
+
+        // Mock data logic for now (or placeholder for API)
+        import { getCookie } from './js/cookie.js'; // Just to show we use existing helpers
+
+        // TODO: Implement actual Fetch logic in js/notes.js
+    </script>
+    <script src="js/notes.js" type="module"></script>
+</body>
+
+</html>

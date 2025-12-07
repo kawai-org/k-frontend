@@ -1,3 +1,5 @@
+import { API_BASE_URL } from './config.js';
+
 document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("authToken");
     const logoutLink = document.getElementById("logout-link");
@@ -11,16 +13,16 @@ document.addEventListener("DOMContentLoaded", function () {
             allowOutsideClick: false
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "https://pdfmulbi.github.io/login/";
+                window.location.href = "login.html";
             }
         });
         return;
-    } 
+    }
 
     // Fetch user profile
     const fetchUserProfile = async () => {
         try {
-            const response = await fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/getone/users", {
+            const response = await fetch(`${API_BASE_URL}/getone/users`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -86,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Updated Data:", updatedData);
 
         try {
-            const response = await fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/update/users", {
+            const response = await fetch(`${API_BASE_URL}/update/users`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -108,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 confirmButtonText: "OK"
             }).then(() => {
                 window.location.reload(); // Reload halaman untuk memperbarui tampilan profil
-            });            
+            });
 
         } catch (error) {
             console.error("Error updating profile:", error);
@@ -118,14 +120,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 text: "Terjadi kesalahan saat memperbarui profil.",
                 confirmButtonText: "OK"
             });
-        }        
+        }
     });
 
-          // Tampilkan tombol logout jika login
+    // Tampilkan tombol logout jika login
     if (logoutLink && token) {
         logoutLink.style.display = "block";
         logoutLink.addEventListener("click", function () {
-            fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/logout", {
+            fetch(`${API_BASE_URL}/logout`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -141,26 +143,32 @@ document.addEventListener("DOMContentLoaded", function () {
                             text: "Anda telah berhasil logout.",
                             confirmButtonText: "OK"
                         }).then(() => {
-                            window.location.href = "https://pdfmulbi.github.io/";
+                            window.location.href = "index.html";
                         });
                     } else {
-                        return response.json().then((data) => {
-                            Swal.fire({
-                                icon: "error",
-                                title: "Gagal Logout",
-                                text: data.message || "Kesalahan tidak diketahui.",
-                                confirmButtonText: "OK"
-                            });
+                        // Fallback force logout
+                        localStorage.clear();
+                        Swal.fire({
+                            icon: "success",
+                            title: "Logout Berhasil!",
+                            text: "Anda telah berhasil logout.",
+                            confirmButtonText: "OK"
+                        }).then(() => {
+                            window.location.href = "index.html";
                         });
                     }
                 })
                 .catch((error) => {
                     console.error("Error:", error);
+                    // Fallback force logout
+                    localStorage.clear();
                     Swal.fire({
-                        icon: "error",
-                        title: "Gagal Logout",
-                        text: "Silakan coba lagi.",
+                        icon: "success",
+                        title: "Logout Berhasil",
+                        text: "Anda telah berhasil logout.",
                         confirmButtonText: "OK"
+                    }).then(() => {
+                        window.location.href = "index.html";
                     });
                 });
         });
